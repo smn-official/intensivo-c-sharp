@@ -12,7 +12,7 @@
 - ASP NET MVC
 - Melhores práticas
 
-## Após este curso o aluno estará apto a:
+## Após este curso o aluno estará apto a
 - Criar um banco de dados utilizando as ferramentas do sql server
 - Analisar, projetar e implementar procedimentos armazenados no banco de dados(procedures)
 - Saber os conceitos e melhores práticas no C#
