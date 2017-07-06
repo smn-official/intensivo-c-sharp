@@ -2,7 +2,7 @@
 
 ## Conteúdo Programático
 - Lógica avançada
-- Conceitos de c#
+- Conceitos de C#
 - Programação orientada a objetos(POO)
 - Modelagem de dados
 - SQL server
