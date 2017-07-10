@@ -15,8 +15,8 @@
 ## Após este curso o aluno estará apto a
 - Criar um banco de dados utilizando as ferramentas do sql server
 - Analisar, projetar e implementar procedimentos armazenados no banco de dados(procedures)
-- Saber os conceitos e melhores práticas no C#
-- Criação de apis com testes
+- Saber os conceitos e melhores práticas no C# e SQL Server
+- Criação de APIs com testes
 - Criação web sites utilizando o padrão MVC
 
 ## Pré-requisitos
