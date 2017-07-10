@@ -1,0 +1,55 @@
+CREATE TABLE Usuario(
+	IdUsuario	INT IDENTITY,
+	Email		VARCHAR(100) UNIQUE,
+	Senha		NVARCHAR(6),
+	FG_Ativo	BIT DEFAULT(1),
+	CONSTRAINT pk_Usuario PRIMARY KEY(IdUsuario)
+)
+
+CREATE TABLE Categoria(
+	IdCategoria	INT IDENTITY,
+	Nome		VARCHAR(50),
+	CONSTRAINT pk_Categoria PRIMARY KEY(IdCategoria)
+)
+
+CREATE TABLE Acao(
+	IdAcao	INT IDENTITY,
+	Nome	VARCHAR(25),
+	CONSTRAINT pk_Acao PRIMARY KEY(IdAcao)
+)
+
+CREATE TABLE Conta(
+	IdConta			INT IDENTITY,
+	Nome			VARCHAR(50),
+	DataCadastro	DATETIME,
+	CONSTRAINT pk_Conta PRIMARY KEY(IdConta)
+)
+
+ALTER TABLE Conta
+ADD IdUsuario INT
+
+ALTER TABLE Conta
+ADD CONSTRAINT fk_Conta_Usuario FOREIGN KEY(IdUsuario)
+REFERENCES Usuario (IdUsuario)
+
+CREATE TABLE Lancamentos(
+	IdLancamento	INT IDENTITY,
+	DataEvento		DATETIME,
+	DataCadastro	DATETIME,
+	Descricao		VARCHAR(150),
+	IdCategoria		INT,
+	IdAcao			INT, 
+	IdConta			INT,
+	CONSTRAINT pk_Lancamentos PRIMARY KEY(IdLancamento),
+	CONSTRAINT fk_Lancamentos_Categoria FOREIGN KEY(IdCategoria)
+	REFERENCES Categoria(IdCategoria),
+	CONSTRAINT fk_Lancamentos_Acao FOREIGN KEY(IdAcao)
+	REFERENCES Acao(IdAcao),
+	CONSTRAINT fk_Lancamentos_Conta FOREIGN KEY(IdConta)
+	REFERENCES Conta(IdConta)
+)
+
+
+
+SELECT CONVERT(NVARCHAR(32),HashBytes('MD5', 'pedro'),2)
+
