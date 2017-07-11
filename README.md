@@ -1,4 +1,4 @@
-# Curso intensivo de férias C# <sup>[SMN](http://smn.com.br)</sup>
+# Curso intensivo de férias C# <sup>[WhatsApp](http://bit.ly/smncsharp)</sup>
 
 ## Conteúdo Programático
 - Lógica avançada
