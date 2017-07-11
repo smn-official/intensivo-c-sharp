@@ -51,6 +51,3 @@ CREATE TABLE Lancamentos(
 )
 
 
-
-SELECT CONVERT(NVARCHAR(32),HashBytes('MD5', 'pedro'),2)
-
