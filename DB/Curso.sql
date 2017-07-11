@@ -37,6 +37,7 @@ CREATE TABLE Lancamentos(
 	DataEvento		DATETIME,
 	DataCadastro	DATETIME,
 	Descricao		VARCHAR(150),
+	Valor		DECIMAL(8,2),
 	IdCategoria		INT,
 	IdAcao			INT, 
 	IdConta			INT,
