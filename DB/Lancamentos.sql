@@ -13,9 +13,9 @@ CREATE PROCEDURE [dbo].[GKSSP_InsLancamento]
 	AS
 
 	/*
-	DocumentaÁ„o
+	Documenta√ß√£o
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Inserir um lanÁamento
+	Objetivo..........: Inserir um lan√ßamento
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
 	Ex................: EXEC [dbo].[GKSSP_InsLancamento] '2017-07-11', 'Cinema - Thor Ragnarok', 2, 2, 1, 50
@@ -39,9 +39,9 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamentos]
 	AS
 
 	/*
-	DocumentaÁ„o
+	Documenta√ß√£o
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Selecionar todos lanÁamentos
+	Objetivo..........: Selecionar todos lan√ßamentos
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
 	Ex................: EXEC [dbo].[GKSSP_SelLancamentos]
@@ -50,7 +50,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamentos]
 
 	BEGIN
 	
-		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usu·rio'
+		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usu√°rio'
 			FROM [dbo].[Lancamentos] l
 				LEFT OUTER JOIN [dbo].[Categoria] c
 					ON c.IdCategoria = l.IdCategoria
@@ -74,9 +74,9 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamento]
 	AS
 
 	/*
-	DocumentaÁ„o
+	Documenta√ß√£o
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Selecionar lanÁamento em especÌfico
+	Objetivo..........: Selecionar lan√ßamento em espec√≠fico
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
 	Ex................: EXEC [dbo].[GKSSP_SelLancamento] 1
@@ -85,7 +85,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamento]
 
 	BEGIN
 	
-		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usu·rio'
+		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usu√°rio'
 			FROM [dbo].[Lancamentos] l
 				LEFT OUTER JOIN [dbo].[Categoria] c
 					ON c.IdCategoria = l.IdCategoria
@@ -116,9 +116,9 @@ CREATE PROCEDURE [dbo].[GKSSP_UpdLancamento]
 	AS
 
 	/*
-	DocumentaÁ„o
+	Documenta√ß√£o
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Atualizar uma aÁ„o
+	Objetivo..........: Atualizar uma a√ß√£o
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
 	Ex................: EXEC [dbo].[GKSSP_UpdLancamento] 3, '2017-06-10', 'Cinema - Homem Aranha De Volta Ao Lar', 2, 2, 1, 35
@@ -149,9 +149,9 @@ CREATE PROCEDURE [dbo].[GKSSP_DelLancamento]
 	AS
 
 	/*
-	DocumentaÁ„o
+	Documenta√ß√£o
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Deletar um lanÁamento
+	Objetivo..........: Deletar um lan√ßamento
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
 	Ex................: EXEC [dbo].[GKSSP_DelLancamento] 3
@@ -162,5 +162,75 @@ CREATE PROCEDURE [dbo].[GKSSP_DelLancamento]
 	
 		DELETE FROM [dbo].[Lancamentos]
 			WHERE IdLancamento = @IdLancamento;
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[GKSSP_SelSaldos]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[GKSSP_SelSaldos]
+GO
+
+CREATE PROCEDURE [dbo].[GKSSP_SelSaldos]
+	@DataInicial	datetime,
+	@DataFinal		datetime,
+	@IdConta		int
+
+	AS
+
+	/*
+	Documenta√ß√£o
+	Arquivo Fonte.....: Lancamentos.sql
+	Objetivo..........: Selecionar os saldos (recebido, pago, lan√ßamento futuro, aberto) da conta e no prazo informado
+	Autor.............: SMN - Lucas Felix Carvalho
+ 	Data..............: 11/07/2017
+	Ex................: EXEC [dbo].[GKSSP_SelSaldos] '2017-07-11', '2017-07-12', 1
+
+	*/
+
+	BEGIN
+	
+		SELECT	SUM(l.Valor) AS 'Soma',
+				a.Nome AS 'A√ß√£o'
+			FROM [dbo].[Lancamentos] l 
+				LEFT OUTER JOIN [dbo].[Acao] a
+					ON a.IdAcao = l.IdAcao
+			WHERE l.DataEvento BETWEEN @DataInicial AND @DataFinal
+				AND l.IdConta = @IdConta
+			GROUP BY a.Nome;
+	END
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[GKSSP_SelSaldoEspecifico]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[GKSSP_SelSaldoEspecifico]
+GO
+
+CREATE PROCEDURE [dbo].[GKSSP_SelSaldoEspecifico]
+	@DataInicial	datetime,
+	@DataFinal		datetime,
+	@IdConta		int,
+	@IdAcao			int
+
+	AS
+
+	/*
+	Documenta√ß√£o
+	Arquivo Fonte.....: Lancamentos.sql
+	Objetivo..........: Selecionar a soma de lan√ßamentos recebidos da conta, a√ß√£o e no prazo informado
+	Autor.............: SMN - Lucas Felix Carvalho
+ 	Data..............: 11/07/2017
+	Ex................: EXEC [dbo].[GKSSP_SelSaldoEspecifico] '2017-07-11', '2017-07-12', 1, 1
+
+	*/
+
+	BEGIN
+	
+		SELECT	SUM(l.Valor) AS 'Soma',
+				a.Nome
+			FROM [dbo].[Lancamentos] l 
+				INNER JOIN [dbo].[Acao] a
+					ON a.IdAcao = l.IdAcao
+			WHERE l.DataEvento BETWEEN @DataInicial AND @DataFinal
+				AND l.IdConta = @IdConta
+				AND l.IdAcao = @IdAcao
+			GROUP BY a.Nome;
 	END
 GO
