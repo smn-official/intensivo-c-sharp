@@ -18,7 +18,7 @@ CREATE PROCEDURE [dbo].[GKSSP_InsLancamento]
 	Objetivo..........: Inserir um lançamento
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
-	Ex................: EXEC [dbo].[GKSSP_InsLancamento] '2017-07-11', 'Cinema - Thor Ragnarok', 2, 2, 1, 50
+	Ex................: EXEC [dbo].[GKSSP_InsLancamento] '2017-08-08', 'Formatura Parcela 1', 2, 1, 1, 130
 
 	*/
 
@@ -170,8 +170,6 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[GKSSP_SelS
 GO
 
 CREATE PROCEDURE [dbo].[GKSSP_SelSaldos]
-	@DataInicial	datetime,
-	@DataFinal		datetime,
 	@IdConta		int
 
 	AS
@@ -179,22 +177,24 @@ CREATE PROCEDURE [dbo].[GKSSP_SelSaldos]
 	/*
 	Documentação
 	Arquivo Fonte.....: Lancamentos.sql
-	Objetivo..........: Selecionar os saldos (recebido, pago, lançamento futuro, aberto) da conta e no prazo informado
+	Objetivo..........: Selecionar os saldos (despesa, receita) da conta
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
-	Ex................: EXEC [dbo].[GKSSP_SelSaldos] '2017-07-11', '2017-07-12', 1
+	Ex................: EXEC [dbo].[GKSSP_SelSaldos] 1
 
 	*/
 
 	BEGIN
 	
-		SELECT	SUM(l.Valor) AS 'Soma',
+		SELECT	SUM(CASE WHEN l.FG_Pago = 0 THEN (l.Valor)
+					ELSE 0 END) AS 'Previsto',
+				SUM(CASE WHEN l.FG_Pago = 1 THEN (l.Valor)
+					ELSE 0 END) AS 'Realizado',				
 				a.Nome AS 'Ação'
 			FROM [dbo].[Lancamentos] l 
-				LEFT OUTER JOIN [dbo].[Acao] a
+				INNER JOIN [dbo].[Acao] a
 					ON a.IdAcao = l.IdAcao
-			WHERE l.DataEvento BETWEEN @DataInicial AND @DataFinal
-				AND l.IdConta = @IdConta
+			WHERE l.IdConta = @IdConta
 			GROUP BY a.Nome;
 	END
 GO
@@ -217,20 +217,51 @@ CREATE PROCEDURE [dbo].[GKSSP_SelSaldoEspecifico]
 	Objetivo..........: Selecionar a soma de lançamentos recebidos da conta, ação e no prazo informado
 	Autor.............: SMN - Lucas Felix Carvalho
  	Data..............: 11/07/2017
-	Ex................: EXEC [dbo].[GKSSP_SelSaldoEspecifico] '2017-07-11', '2017-07-12', 1, 1
+	Ex................: EXEC [dbo].[GKSSP_SelSaldoEspecifico] '2017-07-10', '2017-07-12', 1, 1
 
 	*/
 
 	BEGIN
 	
-		SELECT	SUM(l.Valor) AS 'Soma',
-				a.Nome
+		SELECT	SUM(CASE WHEN l.FG_Pago = 0 THEN (l.Valor)
+					ELSE 0 END) AS 'Previsto',
+				SUM(CASE WHEN l.FG_Pago = 1 THEN (l.Valor)
+					ELSE 0 END) AS 'Realizado',				
+				a.Nome AS 'Ação'
 			FROM [dbo].[Lancamentos] l 
 				INNER JOIN [dbo].[Acao] a
 					ON a.IdAcao = l.IdAcao
-			WHERE l.DataEvento BETWEEN @DataInicial AND @DataFinal
-				AND l.IdConta = @IdConta
+			WHERE l.IdConta = @IdConta
 				AND l.IdAcao = @IdAcao
 			GROUP BY a.Nome;
 	END
 GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[GKSSP_PagarLancamento]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[GKSSP_PagarLancamento]
+GO
+
+CREATE PROCEDURE [dbo].[GKSSP_PagarLancamento]
+	@IdLancamento	int
+
+	AS
+
+	/*
+	Documentação
+	Arquivo Fonte.....: Lancamentos.sql
+	Objetivo..........: Realizar o pagamento de um lançamento
+	Autor.............: SMN - Lucas Felix Carvalho
+ 	Data..............: 11/07/2017
+	Ex................: EXEC [dbo].[GKSSP_PagarLancamento] 4
+
+	*/
+
+	BEGIN
+	
+		UPDATE [dbo].[Lancamentos]
+			SET FG_Pago = 1
+			WHERE IdLancamento = @IdLancamento;
+
+	END
+GO
+
