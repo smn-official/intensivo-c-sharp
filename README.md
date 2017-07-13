@@ -6,6 +6,7 @@
 - Programação orientada a objetos(POO)
 - Modelagem de dados
 - SQL server
+- GIT
 - Web API
 - Rest
 - Testes
