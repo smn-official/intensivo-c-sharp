@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper teal darken-3">
+                <a href="#" class="brand-logo">Controle Financeiro Pessoal</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li onclick="abrirGridLancamento()"><a href="#">Lançamentos</a></li>
+                    <li onclick="abrirGridCategoria()"><a href="#">Categorias</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container" id="divGridLancamento">
+        <h4>Lançamentos</h2>
+            <div class="row">
+                <div class="col s1 offset-s10">
+                    <span class="flow-text">
+                         <a class="btn-floating btn-large waves-effect waves-light green" title="Novo" onclick="abrirCadastroLancamento()"><i class="material-icons">add</i></a>
+                    </span>
+                </div>
+            </div>
+            <table class="responsive-table bordered centered">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>R$ Valor</th>
+                        <th>Pago/Recebido</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/07/2017</td>
+                        <td>Salgados</td>
+                        <td>Alimentação</td>
+                        <td>100,00</td>
+                        <td>Sim</td>
+                        <td>
+                            <span class="flow-text">
+                                <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="abrirCadastroLancamento()"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-floating waves-effect waves-light red" title="Excluir"><i class="material-icons">delete</i></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>01/07/2017</td>
+                        <td>Salgados</td>
+                        <td>Alimentação</td>
+                        <td>100,00</td>
+                        <td>Sim</td>
+                        <td>
+                            <span class="flow-text">
+                                <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="abrirCadastroLancamento()"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-floating waves-effect waves-light red" title="Excluir"><i class="material-icons">delete</i></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>01/07/2017</td>
+                        <td>Salgados</td>
+                        <td>Alimentação</td>
+                        <td>100,00</td>
+                        <td>Sim</td>
+                        <td>
+                            <span class="flow-text">
+                                <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="abrirCadastroLancamento()"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-floating waves-effect waves-light red" title="Excluir"><i class="material-icons">delete</i></a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="center" colspan="2">Receita</th>
+                        <th class="center" colspan="2">Despesa</th>
+                        <th class="center" colspan="2">Saldo</th>
+                    </tr>
+                    <tr>
+                        <th class="center">Prevista</th>
+                        <th class="center">Realizada</th>
+                        <th class="center">Prevista</th>
+                        <th class="center">Realizada</th>
+                        <th class="center">Prevista</th>
+                        <th class="center">Realizada</th>
+                    </tr>
+                    <tr>
+                        <td class="center">300,00</td>
+                        <td class="center">100,00</td>
+                        <td class="center">200,00</td>
+                        <td class="center">200,00</td>
+                        <td class="center">100,00</td>
+                        <td class="center">200,00</td>
+                    </tr>
+                </tfoot>
+            </table>
+    </div>
+    <div class="container" id="divDadosLancamento" style="display: none;">
+        <h4>Cadastra/Edita Lançamento</h2>
+            <div class="row">
+                <div class="col s1 offset-s10">
+                    <span class="flow-text">
+                         <a class="btn-floating btn-large waves-effect waves-light green" title="Voltar" onclick="abrirGridLancamento()"><i class="material-icons">arrow_back</i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select class="multiple">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="1">Despesa</option>
+                                <option value="2">Receita</option>
+                            </select>
+                            <label>Tipo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="txtData" type="text" class="validate">
+                            <label for="txtData">Data</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="txtDescricao" type="text" class="validate">
+                            <label for="txtDescricao">Descrição</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="txtValor" type="text" class="validate">
+                            <label for="txtValor">Valor</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select class="multiple">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="1">Vestuário</option>
+                                <option value="2">Transporte</option>
+                            </select>
+                            <label>Categoria</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s1 offset-s10">
+                            <div class="fixed-action-btn">
+                                <button type="submit" class="btn-floating btn-large waves-effect waves-light green" title="Salvar">
+                                    <i class="large material-icons">save</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <div class="container" id="divGridCategoria" style="display: none;">
+        <h4>Categorias</h2>
+            <div class="row">
+                <div class="col s1 offset-s10">
+                    <span class="flow-text">
+                         <a class="btn-floating btn-large waves-effect waves-light green" title="Novo" onclick="abrirCadastroCategoria()"><i class="material-icons">add</i></a>
+                    </span>
+                </div>
+            </div>
+            <table class="responsive-table bordered centered">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alimentação</td>
+                        <td>
+                            <span class="flow-text">
+                                <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="abrirCadastroCategoria()"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-floating waves-effect waves-light red" title="Excluir"><i class="material-icons">delete</i></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lazer</td>
+                        <td>
+                            <span class="flow-text">
+                                <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="abrirCadastroCategoria()"><i class="material-icons">mode_edit</i></a>
+                                <a class="btn-floating waves-effect waves-light red" title="Excluir"><i class="material-icons">delete</i></a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="container" id="divDadosCategoria" style="display: none;">
+        <h4>Cadastra/Edita Categoria</h2>
+            <div class="row">
+                <div class="col s1 offset-s10">
+                    <span class="flow-text">
+                         <a class="btn-floating btn-large waves-effect waves-light green" title="Voltar" onclick="abrirGridCategoria()"><i class="material-icons">arrow_back</i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="txtNome" type="text" class="validate">
+                            <label for="txtNome">Nome</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s1 offset-s10">
+                            <div class="fixed-action-btn">
+                                <button type="submit" class="btn-floating btn-large waves-effect waves-light green" title="Salvar">
+                                    <i class="large material-icons">save</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</body>
+
+<script>
+    
+    function abrirCadastroLancamento() {
+        $("#divGridLancamento, #divGridCategoria, #divDadosCategoria").fadeOut(function () {
+            $("#divDadosLancamento").fadeIn();
+        });
+    }
+    
+    function abrirGridLancamento() {
+        $("#divDadosLancamento, #divGridCategoria, #divDadosCategoria").fadeOut(function () {
+            $("#divGridLancamento").fadeIn();
+        });
+    }
+    
+    function abrirCadastroCategoria() {
+        $("#divGridCategoria, #divDadosLancamento, #divGridLancamento").fadeOut(function () {
+            $("#divDadosCategoria").fadeIn();
+        });
+    }
+    
+    function abrirGridCategoria() {
+        $("#divDadosCategoria, #divDadosLancamento, #divGridLancamento").fadeOut(function () {
+            $("#divGridCategoria").fadeIn();
+        });
+    }
+
+</script>
+
+</html>
