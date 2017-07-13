@@ -1,5 +1,5 @@
 INSERT INTO [dbo].[Acao] (Nome)
-	VALUES ('Recebido'), ('Pago'), ('Lançamento Futuro'), ('Aberto');
+	VALUES ('Despesa'), ('Receita');
 
 INSERT INTO [dbo].[Categoria] (Nome)
 	VALUES ('Lazer'), ('Serviços'), ('Eletrônicos'), ('Outros');
