@@ -2,7 +2,7 @@
 
 namespace Sobreposicao
 {
-    public class Eletronico //Criando uma super class, o abstract após o public, indica que ela não pode ser instanciada, apenas herdada.
+    public abstract class Eletronico //Criando uma super class, o abstract após o public, indica que ela não pode ser instanciada, apenas herdada.
     {
         public string Marca { get; set; }
         public int Valor { get; set; }
