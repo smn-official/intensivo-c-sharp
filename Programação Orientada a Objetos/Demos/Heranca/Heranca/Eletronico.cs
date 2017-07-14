@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Heranca
+﻿namespace Heranca
 {
     public abstract class Eletronico //Criando uma super class, o abstract após o public, indica que ela não pode ser instanciada, apenas herdada.
     {
@@ -8,10 +6,5 @@ namespace Heranca
         public int Valor { get; set; }
         private int Watts { get; set; }//Ninguem que herdar de Eletronico, terá a caracteristica Watts, pois o modificador de acesso é private
         protected int Caracteristica { get; set; }//O modificador de acesso protected, faz passar a caracteristicas pra quem herdar
-
-        public virtual void EmitirSom()
-        {
-            Console.WriteLine("Eu não emito som");
-        }
     }
 }

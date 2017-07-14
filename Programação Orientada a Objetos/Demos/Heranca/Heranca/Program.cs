@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Heranca
+﻿namespace Heranca
 {
     class Program
     {
@@ -10,11 +8,16 @@ namespace Heranca
             Frigobar frigobar = new Frigobar();
             Televisao televisao = new Televisao();
 
-            geladeira.EmitirSom();//Como a Geladeira herdou de Eletronico tem todas caracteristicas da classe Eletronico
-            televisao.EmitirSom();//Como a Televisao herdou de Eletronico tem todas caracteristicas da classe Eletronico
-            frigobar.EmitirSom(); //Como o Frigobar herdou de Geladeira, tem todas caracteristicas da classe Geladeira e da classe Eletronico
+            geladeira.Valor = 1000;
+            geladeira.Marca = "LG";
 
-            Console.ReadKey();
+            frigobar.Valor = 850;
+            frigobar.Marca = "LG";
+            frigobar.Portatil = true;
+
+            televisao.Valor = 1500;
+            televisao.Marca = "SAMSUNG";
+            televisao.QuantidadePolegadas = 60;
         }
     }
 }
