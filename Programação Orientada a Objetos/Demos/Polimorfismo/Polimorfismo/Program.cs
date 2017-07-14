@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sobreposicao
+namespace Polimorfismo
 {
     class Program
     {
@@ -14,10 +14,6 @@ namespace Sobreposicao
             geladeira.EmitirSom();//Retorno: Som da geladeira
             televisao.EmitirSom();//Retorno: Som da televisão
             frigobar.EmitirSom();//Retorno: Som do frigobar
-
-            geladeira = new Frigobar();
-
-            geladeira.EmitirSom();//Retorno: Som do frigobar, Aqui foi feita uma Sobreposição de método
 
             Console.ReadKey();
         }
