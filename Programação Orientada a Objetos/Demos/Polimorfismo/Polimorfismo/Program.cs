@@ -6,14 +6,21 @@ namespace Polimorfismo
     {
         static void Main(string[] args)
         {
+            Eletronico[] eletronicos = new Eletronico[3]; 
+
             Geladeira geladeira = new Geladeira();
             Frigobar frigobar = new Frigobar();
             Televisao televisao = new Televisao();
 
-            //O mesmo método EmitirSom retorna resultados diferentes, isso é polimorfismo!
-            geladeira.EmitirSom();//Retorno: Som da geladeira
-            televisao.EmitirSom();//Retorno: Som da televisão
-            frigobar.EmitirSom();//Retorno: Som do frigobar
+            eletronicos[0] = geladeira;
+            eletronicos[1] = frigobar;
+            eletronicos[2] = televisao;
+
+            //O mesmo método EmitirSom que é um Eletronico retorna resultados diferentes, isso é polimorfismo!
+            foreach (var eletronico in eletronicos)
+            {
+                eletronico.EmitirSom();
+            }
 
             Console.ReadKey();
         }

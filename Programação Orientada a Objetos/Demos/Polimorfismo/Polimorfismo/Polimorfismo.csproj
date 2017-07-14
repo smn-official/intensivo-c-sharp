@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Eletronico.cs" />
+    <Compile Include="Frigobar.cs" />
+    <Compile Include="Geladeira.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Televisao.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
