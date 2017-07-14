@@ -246,28 +246,27 @@
 </body>
 
 <script>
-    
     function abrirCadastroLancamento() {
-        $("#divGridLancamento, #divGridCategoria, #divDadosCategoria").fadeOut(function () {
-            $("#divDadosLancamento").fadeIn();
+        $("#divGridLancamento, #divGridCategoria, #divDadosCategoria").hide(function () {
+            $("#divDadosLancamento").show();
         });
     }
-    
+
     function abrirGridLancamento() {
-        $("#divDadosLancamento, #divGridCategoria, #divDadosCategoria").fadeOut(function () {
-            $("#divGridLancamento").fadeIn();
+        $("#divDadosLancamento, #divGridCategoria, #divDadosCategoria").hide(function () {
+            $("#divGridLancamento").show();
         });
     }
-    
+
     function abrirCadastroCategoria() {
-        $("#divGridCategoria, #divDadosLancamento, #divGridLancamento").fadeOut(function () {
-            $("#divDadosCategoria").fadeIn();
+        $("#divGridCategoria, #divDadosLancamento, #divGridLancamento").hide(function () {
+            $("#divDadosCategoria").show();
         });
     }
-    
+
     function abrirGridCategoria() {
-        $("#divDadosCategoria, #divDadosLancamento, #divGridLancamento").fadeOut(function () {
-            $("#divGridCategoria").fadeIn();
+        $("#divDadosCategoria, #divDadosLancamento, #divGridLancamento").hide(function () {
+            $("#divGridCategoria").show();
         });
     }
 

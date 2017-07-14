@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper teal darken-3">
+                <a href="#" class="brand-logo">Controle Financeiro Pessoal</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li onclick="cadastrar()"><a href="#">Cadastrar-se</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container center" id="divContainerLogin">
+        <h4>Login</h2>
+            <div class="row">
+                <form class="col s6 offset-s3">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">E-mail</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Senha</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="col s4"><a class="waves-effect waves-light btn" href="Index.html"><i class="material-icons left">send</i>Entrar</a></span>
+                        <span class="col s8 offset-s5" onclick="cadastrar()"><a href="#">Não possuo conta (cadastrar-me)</a></span>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <div class="container center" id="divContainerCadastro" style="display: none;">
+        <h4>Cadastre-se</h2>
+        <div class="row">
+            <form class="col s6 offset-s3">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="nome" type="text" class="validate">
+                        <label for="nome">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                 <div class="row">
+                        <div class="input-field col s12">
+                            <input id="passwordConfirmed" type="password" class="validate">
+                            <label for="passwordConfirmed">Confirmar Senha</label>
+                        </div>
+                    </div>
+                <div class="row">
+                        <span class="col s5"><a class="waves-effect waves-light btn" href="Index.html"><i class="material-icons left">send</i>Cadastrar</a></span>
+                        <span class="col s7 offset-s6" onclick="login()"><a href="#">Já sou cadastrado. Fazer login</a></span>
+                    </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    function cadastrar() {
+        $("#divContainerLogin").hide(function () {
+            $("#divContainerCadastro").show();
+        });
+    }
+
+    function login() {
+        $("#divContainerCadastro").hide(function () {
+            $("#divContainerLogin").show();
+        });
+    }
+
+</script>
+
+</html>
