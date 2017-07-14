@@ -32,9 +32,6 @@ ALTER TABLE Conta
 ADD CONSTRAINT fk_Conta_Usuario FOREIGN KEY(IdUsuario)
 REFERENCES Usuario (IdUsuario)
 
-ALTER TABLE Lancamentos
-ADD FG_Pago BIT DEFAULT(0)
-
 CREATE TABLE Lancamentos(
 	IdLancamento	INT IDENTITY,
 	DataEvento		DATETIME,
@@ -53,4 +50,5 @@ CREATE TABLE Lancamentos(
 	REFERENCES Conta(IdConta)
 )
 
-
+ALTER TABLE Lancamentos
+ADD FG_Pago BIT DEFAULT(0)
