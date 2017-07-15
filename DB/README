@@ -1,9 +1,9 @@
 Ordem de execução:
 
 1 - Modelagem.sql
-2 - Popular Base.sql
-3 - Acao.sql
-4 - Categoria.sql
-5 - Usuario.sql
-6 - Conta.sql
-7 - Lancamentos.sql
+2 - Acao.sql
+3 - Categoria.sql
+4 - Usuario.sql
+5 - Conta.sql
+6 - Lancamentos.sql 
+7 - Popular base.sql
