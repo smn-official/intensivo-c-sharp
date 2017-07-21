@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
 
-namespace Repositorio
+namespace LancamentoRepositorio
 {
-    public class DatabaseConnect
+    public class ConexaoBancoDados
     {
         // String de conexão
         private string ConnectionString => ConfigurationManager.ConnectionStrings["ConexaoBanco"].ToString();
@@ -22,7 +18,7 @@ namespace Repositorio
         private SqlCommand Command { get; set; }
 
         // Construtor para criar objeto da conexão
-        public DatabaseConnect()
+        public ConexaoBancoDados()
         {
             _connection = Connect();
         }

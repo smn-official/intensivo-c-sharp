@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C6ED2B6-E8D1-4064-AD09-942C2473E389}</ProjectGuid>
+    <ProjectGuid>{BCE8A311-B4B2-4385-972C-66544584E54E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Repositorio</RootNamespace>
-    <AssemblyName>Repositorio</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>LancamentoRepositorio</RootNamespace>
+    <AssemblyName>LancamentoRepositorio</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoriaRepositorio.cs" />
-    <Compile Include="DatabaseConnect.cs" />
-    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="ConexaoBancoDados.cs" />
+    <Compile Include="LancamentoRepository.cs" />
+    <Compile Include="Models\Lancamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
