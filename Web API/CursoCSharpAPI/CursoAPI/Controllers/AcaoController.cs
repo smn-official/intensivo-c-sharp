@@ -1,7 +1,7 @@
-﻿using System;
-using System.Web.Http;
-using CursoRepositorio;
+﻿using CursoRepositorio;
 using CursoRepositorio.Models;
+using System;
+using System.Web.Http;
 
 namespace CursoAPI.Controllers
 {
@@ -39,11 +39,11 @@ namespace CursoAPI.Controllers
             }
         }
 
-        public IHttpActionResult Post(Acao categoria)
+        public IHttpActionResult Post(Acao acao)
         {
             try
             {
-                _acaoRepositorio.Inserir(categoria);
+                _acaoRepositorio.Inserir(acao);
                 return Ok();
             }
             catch (Exception ex)
@@ -52,11 +52,11 @@ namespace CursoAPI.Controllers
             }
         }
 
-        public IHttpActionResult Put(Acao categoria)
+        public IHttpActionResult Put(Acao acao)
         {
             try
             {
-                _acaoRepositorio.Atualizar(categoria);
+                _acaoRepositorio.Atualizar(acao);
                 return Ok();
             }
             catch (Exception ex)

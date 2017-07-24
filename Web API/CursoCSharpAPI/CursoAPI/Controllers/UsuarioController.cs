@@ -1,7 +1,7 @@
-﻿using System;
-using System.Web.Http;
-using CursoRepositorio;
+﻿using CursoRepositorio;
 using CursoRepositorio.Models;
+using System;
+using System.Web.Http;
 
 namespace CursoAPI.Controllers
 {
@@ -39,11 +39,11 @@ namespace CursoAPI.Controllers
             }
         }
 
-        public IHttpActionResult Post(Usuario categoria)
+        public IHttpActionResult Post(Usuario usuario)
         {
             try
             {
-                _usuarioRepositorio.Inserir(categoria);
+                _usuarioRepositorio.Inserir(usuario);
                 return Ok();
             }
             catch (Exception ex)
@@ -52,11 +52,11 @@ namespace CursoAPI.Controllers
             }
         }
 
-        public IHttpActionResult Put(Usuario categoria)
+        public IHttpActionResult Put(Usuario usuario)
         {
             try
             {
-                _usuarioRepositorio.Atualizar(categoria);
+                _usuarioRepositorio.Atualizar(usuario);
                 return Ok();
             }
             catch (Exception ex)

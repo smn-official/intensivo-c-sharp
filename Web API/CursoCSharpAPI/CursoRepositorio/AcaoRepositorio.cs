@@ -23,7 +23,7 @@ namespace CursoRepositorio
                 {
                     acoes.Add(new Acao
                     {
-                        IdAcao = leitor.GetInt32(leitor.GetOrdinal("IdAcao")),
+                        //IdAcao = leitor.GetInt32(leitor.GetOrdinal("IdAcao")),
                         Nome = leitor.GetString(leitor.GetOrdinal("Nome"))
                     });
                 }
@@ -41,7 +41,7 @@ namespace CursoRepositorio
                 if (leitor.Read())
                     return new Acao
                     {
-                        IdAcao = leitor.GetInt32(leitor.GetOrdinal("IdAcao")),
+                        //IdAcao = leitor.GetInt32(leitor.GetOrdinal("IdAcao")),
                         Nome = leitor.GetString(leitor.GetOrdinal("Nome"))
                     };
 
