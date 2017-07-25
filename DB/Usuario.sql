@@ -47,9 +47,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelUsuarios]
 	BEGIN
 	
 		SELECT	Email,	
-				CASE 
-					WHEN FG_Ativo = 1 THEN 'Ativo' 
-					ELSE 'Inativo' END AS 'Status'
+				FG_Ativo
 			FROM [dbo].[Usuario];
 
 	END
@@ -77,9 +75,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelUsuario]
 	BEGIN
 	
 		SELECT	Email,	
-				CASE 
-					WHEN FG_Ativo = 1 THEN 'Ativo' 
-					ELSE 'Inativo' END AS 'Status'
+				FG_Ativo
 			FROM [dbo].[Usuario]
 			WHERE IdUsuario = @IdUsuario;
 
