@@ -1,9 +1,7 @@
-﻿@{ Layout = null; }
+﻿@model HelloWorld.ViewModels.CategoriaViewModel
+@{ Layout = null; }
 
 <div class="container" id="divContentCategoria">
-    <h4>
-        Cadastra/Edita Categoria
-    </h4>
     <div class="row">
         <div class="col s1 offset-s10">
             <span class="flow-text">
@@ -12,22 +10,46 @@
         </div>
     </div>
     <div class="row">
-        <form class="col s12">
+        @using (Ajax.BeginForm(Model.IdCategoria == 0 ? "Post" : "Put",
+            "Categoria", new AjaxOptions
+            {
+                OnSuccess = " buscarGrid()",
+                OnFailure = "DeuErrado(xhr)"
+            }, new { @class = "col s12" }))
+        {
             <div class="row">
+                <input type="hidden" name="IdCategoria" value="@Model.IdCategoria"/>
                 <div class="input-field col s12">
-                    <input id="txtNome" type="text" class="validate">
+                    <input id="txtNome" type="text" class="validate" name="Nome" value="@Model.Nome">
                     <label for="txtNome">Nome</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col s1 offset-s10">
                     <div class="fixed-action-btn">
-                        <button type="submit" class="btn-floating btn-large waves-effect waves-light green" title="Salvar">
+                        <button type="submit" 
+                                class="btn-floating btn-large waves-effect waves-light green validate" 
+                                title="Salvar"
+                                id="btnSalvarCategoria">
                             <i class="large material-icons">save</i>
                         </button>
                     </div>
                 </div>
             </div>
-        </form>
+        }
     </div>
 </div>
+
+<script>
+
+    $("#btnSalvarCategoria").submit(function () {
+        if ($("#txtNome").val() == "") {
+            return false;
+        };
+    });
+    
+    function DeuErrado(xhr) {
+        alert(xhr.responseText);
+    }
+
+</script>

@@ -10,16 +10,18 @@
         </div>
     </div>
     <div id="divGridCategoria">
-        @Html.Partial("_Grid")
+
     </div>
 </div>
 
 <script>
 
-    function buscarCadastro() {
-        $.get('@Url.Action("Cadastro", "Categoria")').done(function (data) {
-            $("#divContentCategoria").html(data);
+    function buscarGrid() {
+        $.get('@Url.Action("BuscarGrid", "Categoria")').done(function (data) {
+            $("#divGridCategoria").html(data);
         });
     }
+
+    buscarGrid();
 
 </script>

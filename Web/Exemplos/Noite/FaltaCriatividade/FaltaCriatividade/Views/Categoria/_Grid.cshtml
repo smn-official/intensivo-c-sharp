@@ -1,13 +1,12 @@
-﻿@using System.Collections;
-@model IEnumerable<HelloWorld.ViewModels.CategoriaViewModel>
+﻿@model IEnumerable<FaltaCriatividade.ViewModels.CategoriaViewModel>
 @{ Layout = null; }
 
 <table class="responsive-table bordered centered">
     <thead>
-        <tr>
-            <th>Nome</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>Nome</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
         @if (Model != null && Model.Any())
@@ -31,13 +30,3 @@
         }
     </tbody>
 </table>
-
-<script>
-
-    function buscarDados() {
-        $.get('@Url.Action("BuscarDados", "Categoria")').done(function (data) {
-            $("#divContentCategoria").html(data);
-        });
-    }
-
-</script>
