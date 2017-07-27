@@ -32,7 +32,7 @@ namespace FaltaCriatividade.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", ex.Message);
+                return View("~/Shared/Error", ex.Message);
             }
         }
 
@@ -45,7 +45,14 @@ namespace FaltaCriatividade.Controllers
                 if (idCategoria.HasValue)
                 {
                     var resposta = Requisicao.Get("http://localhost:5000/api/Categoria?id=" + idCategoria);
+                    if (!resposta.IsSuccessStatusCode)
+                        return View("Error", "Erro ao buscar categoria");
+
+                    categoria = JsonConvert.DeserializeObject<CategoriaViewModel>(
+                        resposta.Content.ReadAsStringAsync().Result);
                 }
+
+                return View("_Dados", categoria);
             }
             catch (Exception ex)
             {

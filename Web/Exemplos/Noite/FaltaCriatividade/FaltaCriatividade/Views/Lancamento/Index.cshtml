@@ -18,6 +18,8 @@
     function buscarGrid() {
         $.get('@Url.Action("BuscarGrid", "Lancamento")').done(function (data) {
             $("#divContentLancamento").html(data);
+        }).fail(function (xhr) {
+            console.log(xhr.responseText);
         });
     }
 
