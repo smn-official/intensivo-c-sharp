@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FaltaCriatividade.ViewModels.CategoriaViewModel>
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col s1 offset-s10">
+        <span class="flow-text">
+            <a class="btn-floating btn-large waves-effect waves-light green"
+               title="Novo" onclick="buscarDados()">
+                <i class="material-icons">add</i>
+            </a>
+        </span>
+    </div>
+</div>
+<table class="responsive-table bordered centered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>
+                        <span class="flow-text">
+                            <a class="btn-floating waves-effect waves-light green" title="Editar" onclick="buscarDados('@item.IdCategoria')"><i class="material-icons">mode_edit</i></a>
+                            <a class="btn-floating waves-effect waves-light red" title="Excluir" onclick="excluir('@item.IdCategoria')"><i class="material-icons">delete</i></a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="2">Nenhum registro encontrado...</td></tr>
+        }
+    </tbody>
+</table>
+
+<script>
+
+    function buscarDados(idCategoria) {
+        $.get('@Url.Action("BuscarDados", "Categoria")', {
+            idCategoria: idCategoria
+        }).done(function (data) {
+            // Substituindo conteúdo que está dentro da DIV na view de Index
+            $("#divContentCategoria").html(data);
+        }).fail(function (xhr) {
+            alert(xhr.responseText);
+        });
+    }
+
+    function excluir(idCategoria) {
+        if (!confirm("Caso você confirmar, será excluido todos os lançamentos" +
+            "com vinculo na categoria, deseja prosseguir?")) return;
+
+        $.get('@Url.Action("Delete", "Categoria")', {
+            idCategoria: idCategoria
+        }).done(function () {
+            buscarGrid();
+        }).fail(function (xhr) {
+            alert(xhr.responseText);
+        });
+    }
+
+</script>

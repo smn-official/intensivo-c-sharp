@@ -50,7 +50,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamentos]
 
 	BEGIN
 	
-		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usuário'
+		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, a.Nome AS 'Acao', c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usuario'
 			FROM [dbo].[Lancamentos] l
 				LEFT OUTER JOIN [dbo].[Categoria] c
 					ON c.IdCategoria = l.IdCategoria
@@ -85,7 +85,7 @@ CREATE PROCEDURE [dbo].[GKSSP_SelLancamento]
 
 	BEGIN
 	
-		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usuário'
+		SELECT l.IdLancamento, l.DataEvento, l.DataCadastro, l.Valor, l.Descricao, a.Nome AS 'Acao', c.Nome AS 'Categoria', co.Nome AS 'Conta', u.Email AS 'Usuario'
 			FROM [dbo].[Lancamentos] l
 				LEFT OUTER JOIN [dbo].[Categoria] c
 					ON c.IdCategoria = l.IdCategoria

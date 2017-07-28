@@ -1,0 +1,20 @@
+﻿<div class="container" id="divContentCategoria">
+    <h4>
+        Categorias
+    </h4>
+    <div id="divGridCategoria">
+
+    </div>
+</div>
+
+<script>
+
+    function buscarGrid() {
+        $.get('@Url.Action("BuscarGrid", "Categoria")').done(function (data) {
+            $("#divGridCategoria").html(data);
+        });
+    }
+
+    buscarGrid();
+
+</script>

@@ -113,8 +113,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[GKSSP_DelC
 GO
 
 CREATE PROCEDURE [dbo].[GKSSP_DelCategoria]
-	@IdCategoriaAnt		int,
-	@IdCategoriaNova	int
+	@IdCategoria		int
 
 	AS
 
@@ -130,11 +129,10 @@ CREATE PROCEDURE [dbo].[GKSSP_DelCategoria]
 
 	BEGIN
 	
-		UPDATE [dbo].[Lancamentos]
-			SET IdAcao = @IdCategoriaAnt
-			WHERE IdAcao = @IdCategoriaNova;
+		DELETE FROM [dbo].[Lancamentos]
+			WHERE IdCategoria = @IdCategoria;
 
 		DELETE FROM [dbo].[Categoria]
-			WHERE IdCategoria = @IdCategoriaAnt;
+			WHERE IdCategoria = @IdCategoria;
 	END
 GO
