@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CursoRepositorio.Models;
+﻿using CursoRepositorio.Models;
+using System.Collections.Generic;
 
 namespace CursoRepositorio
 {
@@ -46,7 +46,7 @@ namespace CursoRepositorio
                         IdConta = leitor.GetInt32(leitor.GetOrdinal("IdConta")),
                         Nome = leitor.GetString(leitor.GetOrdinal("Nome")),
                         DataCadastro = leitor.GetDateTime(leitor.GetOrdinal("DataCadastro")),
-                        Usuario = new Usuario { Email = leitor.GetString(leitor.GetOrdinal("Email")) }
+                        Usuario = new Usuario { Email = leitor.GetString(leitor.GetOrdinal("Usuario")) }
                     };
 
             return null;
