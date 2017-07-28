@@ -61,11 +61,10 @@ namespace CursoRepositorio
             _conexao.ExecutarSemRetorno();
         }
 
-        public void Excluir(int idCategoriaAntiga, int idCategoriaNova)
+        public void Excluir(int idCategoria)
         {
             _conexao.ExecutarProcedure("GKSSP_DelCategoria");
-            _conexao.AddParametro("@IdCategoriaAnt", idCategoriaNova);
-            _conexao.AddParametro("@IdCategoriaNova", idCategoriaNova);
+            _conexao.AddParametro("@IdCategoria", idCategoria);
             _conexao.ExecutarSemRetorno();
         }
     }

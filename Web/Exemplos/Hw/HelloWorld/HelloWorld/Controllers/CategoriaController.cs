@@ -49,7 +49,11 @@ namespace HelloWorld.Controllers
                         .Get("http://localhost:5000/api/Categoria?id=" + idCategoria);
 
                     if (!resposta.IsSuccessStatusCode)
-                        return View("Error", "Erro ao buscar dados");
+                    {
+                        Response.StatusCode = 400;
+                        Response.TrySkipIisCustomErrors = true;
+                        return Content("Erro ao buscar dados");
+                    }
 
                     categoria = JsonConvert.DeserializeObject<CategoriaViewModel>(
                         resposta.Content.ReadAsStringAsync().Result);
@@ -91,16 +95,42 @@ namespace HelloWorld.Controllers
                     categoria);
 
                 if (!resposta.IsSuccessStatusCode)
-                    return View("Error", "Erro ao atualizar categoria");
+                {
+                    Response.StatusCode = 400;
+                    Response.TrySkipIisCustomErrors = true;
+                    return Content("Erro ao atualizar categoria");
+                }
 
                 Response.StatusCode = 200;
-                Response.TrySkipIisCustomErrors = true;
 
                 return Content("");
             }
             catch (Exception ex)
             {
                 return View("Error", ex.Message);
+            }
+        }
+
+        public ActionResult Delete(int idCategoria)
+        {
+            try
+            {
+                var resposta = Requisicao.Delete("http://localhost:5000/api/Categoria?idCategoria=" + idCategoria);
+                if (!resposta.IsSuccessStatusCode)
+                {
+                    Response.StatusCode = 400;
+                    Response.TrySkipIisCustomErrors = true;
+                    return Content("Falha ao excluir categoria");
+                }
+
+                Response.StatusCode = 200;
+                return Content("");
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                Response.TrySkipIisCustomErrors = true;
+                return Content(ex.Message);
             }
         }
     }

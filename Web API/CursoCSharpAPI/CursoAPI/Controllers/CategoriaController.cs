@@ -75,11 +75,11 @@ namespace CursoAPI.Controllers
 
         // Excluindo uma categoria
         // Exemplo "http://localhost:10421/api/Categoria?idCategoriaAntiga=2&idCategoriaNova=1", usar postman com verbo DELETE
-        public IHttpActionResult Delete(int idCategoriaAntiga, int idCategoriaNova)
+        public IHttpActionResult Delete(int idCategoria)
         {
             try
             {
-                _categoriaRepositorio.Excluir(idCategoriaAntiga, idCategoriaNova);
+                _categoriaRepositorio.Excluir(idCategoria);
                 return Ok();
             }
             catch (Exception ex)
